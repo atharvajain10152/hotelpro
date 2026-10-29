@@ -1,0 +1,217 @@
+/* ==========================================================================
+   HotelPro Luxury Hospitality Design System
+   Palette: Warm Ivory, Charcoal, Soft Slate, Muted Gold (#d4af37, #c5a059)
+   ========================================================================== */
+
+:root {
+  --hp-primary: #1a1e24;
+  --hp-primary-light: #2c323c;
+  --hp-gold: #c5a059;
+  --hp-gold-hover: #b08d46;
+  --hp-gold-light: #fbf7ee;
+  --hp-bg: #faf9f6;
+  --hp-surface: #ffffff;
+  --hp-border: #e9e6df;
+  --hp-text: #22252a;
+  --hp-muted: #6b7280;
+  --hp-success: #15803d;
+  --hp-danger: #b91c1c;
+  --hp-warning: #b45309;
+  --hp-radius-sm: 8px;
+  --hp-radius-md: 12px;
+  --hp-radius-lg: 16px;
+  --hp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --hp-shadow-md: 0 4px 14px rgba(26, 30, 36, 0.08);
+  --hp-shadow-lg: 0 12px 28px rgba(26, 30, 36, 0.12);
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--hp-bg);
+  color: var(--hp-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-serif, .hp-brand {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Luxury Buttons */
+.btn-gold {
+  background-color: var(--hp-gold);
+  border-color: var(--hp-gold);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--hp-radius-sm);
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-gold:hover, .btn-gold:focus {
+  background-color: var(--hp-gold-hover);
+  border-color: var(--hp-gold-hover);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-dark-hp {
+  background-color: var(--hp-primary);
+  border-color: var(--hp-primary);
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: var(--hp-radius-sm);
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-dark-hp:hover {
+  background-color: var(--hp-primary-light);
+  border-color: var(--hp-primary-light);
+  color: #ffffff;
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  border: 1px solid var(--hp-gold);
+  color: var(--hp-gold-hover);
+  font-weight: 600;
+  border-radius: var(--hp-radius-sm);
+  padding: 0.5rem 1.15rem;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--hp-gold);
+  color: #ffffff;
+}
+
+/* Cards & Surfaces */
+.hp-card {
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-md);
+  box-shadow: var(--hp-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hp-card:hover {
+  box-shadow: var(--hp-shadow-md);
+}
+
+.hp-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hp-shadow-lg);
+}
+
+/* Badges */
+.badge-status {
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-status.confirmed, .badge-status.completed, .badge-status.clean, .badge-status.active, .badge-status.approved {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.badge-status.pending, .badge-status.pending_payment, .badge-status.submitted {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.badge-status.checked_in, .badge-status.in_progress, .badge-status.cleaning {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge-status.dirty, .badge-status.cancellation_requested, .badge-status.maintenance {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+.badge-status.cancelled, .badge-status.expired, .badge-status.out_of_service, .badge-status.failed, .badge-status.suspended {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Hero styling */
+.hp-hero {
+  background: linear-gradient(rgba(18, 22, 28, 0.75), rgba(18, 22, 28, 0.85)),
+              url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  color: #ffffff;
+  padding: 5rem 1rem 6rem;
+  border-bottom: 3px solid var(--hp-gold);
+}
+
+/* Search bar floating card */
+.hp-search-box {
+  background: #ffffff;
+  border-radius: var(--hp-radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  margin-top: -3rem;
+  position: relative;
+  z-index: 10;
+  border: 1px solid var(--hp-border);
+}
+
+/* Modals */
+.modal-content {
+  border-radius: var(--hp-radius-md);
+  border: 1px solid var(--hp-border);
+  box-shadow: var(--hp-shadow-lg);
+}
+
+/* Navbar */
+.navbar-hp {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--hp-border);
+  padding: 0.85rem 0;
+}
+
+/* Sidebar navigation */
+.hp-sidebar {
+  background: #ffffff;
+  border-right: 1px solid var(--hp-border);
+  min-height: calc(100vh - 72px);
+}
+
+.hp-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #4b5563;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--hp-radius-sm);
+  margin-bottom: 0.25rem;
+  transition: all 0.15s ease;
+}
+
+.hp-sidebar-link:hover, .hp-sidebar-link.active {
+  background-color: var(--hp-gold-light);
+  color: var(--hp-gold-hover);
+  font-weight: 600;
+}
+
+/* Tables */
+.table-hp {
+  vertical-align: middle;
+}
+.table-hp th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--hp-muted);
+  background-color: #f9fafb;
+  border-top: none;
+}
