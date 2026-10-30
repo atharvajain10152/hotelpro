@@ -179,3 +179,4 @@ All responses follow standard JSON structures:
 ### GET `/admin/audit-logs`
 - **Access**: Admin only
 - **Response**: `200 OK` with recent audit logs.
+

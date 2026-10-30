@@ -50,6 +50,7 @@ export const seedDatabase = async () => {
     // 1. Create Hotels
     const hotel1 = await Hotel.create({
       name: 'The Grand Royal Palace & Spa',
+      tagline: 'Waterfront Palace Blending Edwardian Heritage With Legendary Luxury',
       description:
         'A legendary 5-star waterfront sanctuary blending heritage architecture with modern luxury. Features an iconic infinity pool overlooking the bay, Michelin-star dining, and a world-renowned wellness spa.',
       address: '1 Apollo Bunder, Colaba',
@@ -72,6 +73,119 @@ export const seedDatabase = async () => {
         'State-of-the-art Fitness Center',
         'Valet Parking'
       ],
+      highlights: [
+        'Panoramic Arabian Sea & Gateway of India Views',
+        '24/7 Royal White-Glove Butler Service',
+        'Celebrated Jiva Ayurvedic Spa Sanctuary',
+        'Michelin-Curated Restaurants & Historic Harbour Bar',
+        'Private Luxury Limousine Fleet & Helipad Access'
+      ],
+      dining: [
+        {
+          name: 'The Zodiac Dining Room',
+          cuisine: 'French & Mediterranean Haute Cuisine',
+          hours: '19:00 - 23:30',
+          dressCode: 'Formal Elegance',
+          description: 'Curated seasonal tasting menus paired with sommelier selections overlooking the illuminated harbor.',
+          image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80'
+        },
+        {
+          name: 'Golden Dragon Imperial Court',
+          cuisine: 'Sichuan & Cantonese Gourmet',
+          hours: '12:30 - 15:00 & 19:30 - 23:30',
+          dressCode: 'Smart Casual',
+          description: 'Legendary imperial recipes crafted by master chefs, featuring Peking Duck and handcrafted dim sum.',
+          image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80'
+        },
+        {
+          name: 'Sea Lounge High Tea',
+          cuisine: 'Artisan Patisserie & Colonial High Tea',
+          hours: '10:00 - 22:00',
+          dressCode: 'Smart Casual',
+          description: 'Iconic afternoon high tea with live piano melodies and uninterrupted ocean panoramas.',
+          image: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=600&q=80'
+        },
+        {
+          name: 'The Historic Harbour Bar',
+          cuisine: 'Signature Cocktails & Rare Malts',
+          hours: '17:00 - 01:30',
+          dressCode: 'Smart Casual',
+          description: 'The premier licensed cocktail bar in Western India, crafting prohibition-era signature libations.',
+          image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80'
+        }
+      ],
+      wellness: {
+        title: 'Jiva Imperial Spa & Wellness Sanctuary',
+        description: 'A tranquil 12,000 sq.ft oasis steeped in royal Indian healing therapies, signature aromatherapy, and ancient wellness sciences.',
+        hours: '06:00 - 22:30',
+        facilities: [
+          'Ayurvedic Consultation & Therapy Suites',
+          'Heated Bayside Hydrotherapy Vitality Pool',
+          'Himalayan Salt Steam Rooms & Cedar Saunas',
+          '24/7 Technogym Olympic Fitness Studio',
+          'Sunken Relaxation Lounges & Herbarium'
+        ]
+      },
+      policies: {
+        checkInTime: '14:00',
+        checkOutTime: '11:00',
+        cancellationPolicy: 'Free cancellation up to 48 hours prior to check-in. Full refund guaranteed within window.',
+        petPolicy: 'Guide dogs and well-behaved small pets (under 12kg) welcomed in designated garden suites upon advance notice.',
+        smokingPolicy: '100% smoke-free property indoors. Dedicated outdoor smoking pavilion located at the South Terrace.',
+        childPolicy: 'Children under 6 stay complimentary sharing parent bedding. Rollaway suites available on request.',
+        depositPolicy: 'Government photo identification and credit card pre-authorization required upon registration.'
+      },
+      nearbyAttractions: [
+        {
+          name: 'Gateway of India',
+          distance: '0.1 km (1 min walk)',
+          category: 'Historic Landmark',
+          description: 'Iconic 20th-century arch monument overlooking Mumbai harbour.'
+        },
+        {
+          name: 'Colaba Causeway Promenade',
+          distance: '0.4 km (5 min walk)',
+          category: 'Shopping & Culture',
+          description: 'Bustling boulevard of heritage art galleries, chic bistros, and antique boutiques.'
+        },
+        {
+          name: 'Chhatrapati Shivaji Maharaj Vastu Museum',
+          distance: '0.9 km (10 min walk)',
+          category: 'Art & Heritage',
+          description: 'Premier heritage museum holding over 50,000 historic antiquities.'
+        },
+        {
+          name: 'Marine Drive Queens Necklace',
+          distance: '2.5 km (8 min drive)',
+          category: 'Scenic Coastal',
+          description: 'Famous 3.6-kilometer seaside promenade offering spectacular sunset vistas.'
+        }
+      ],
+      propertyDetails: {
+        yearBuilt: 1903,
+        architecturalStyle: 'Indo-Saracenic & Florentine Renaissance',
+        totalFloors: 7,
+        totalRooms: 285,
+        airportDistance: '24 km from Chhatrapati Shivaji Maharaj International Airport (BOM)'
+      },
+      faqs: [
+        {
+          question: 'What are the check-in and check-out times?',
+          answer: 'Check-in is guaranteed from 14:00 onwards, and check-out is until 11:00. Early check-in or late check-out is accommodated subject to availability.'
+        },
+        {
+          question: 'Is airport limousine transportation available?',
+          answer: 'Yes, we provide luxury airport transfers in our private fleet of BMW 7-Series and Mercedes limousines with Wi-Fi and chilled refreshments.'
+        },
+        {
+          question: 'Are breakfast and dining reservations included?',
+          answer: 'Royal Executive packages include daily breakfast buffet at Sea Lounge. Priority reservations for dinner can be placed with our 24/7 concierge.'
+        },
+        {
+          question: 'Can special dietary or allergy requests be accommodated?',
+          answer: 'Our executive chefs cater to vegan, gluten-free, Jain, halal, and customized nutritional plans.'
+        }
+      ],
       images: [
         'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
@@ -84,6 +198,7 @@ export const seedDatabase = async () => {
 
     const hotel2 = await Hotel.create({
       name: 'Azure Cove Beachfront Villa & Resort',
+      tagline: 'Exclusive Private Villa Haven on the Sun-Drenched Sands of North Goa',
       description:
         'Nestled directly on the pristine white sands of North Goa, Azure Cove offers private seaside villas, sunset cabanas, world-class beach bar, and tranquil tropical gardens.',
       address: 'Calangute Beach Road, Candolim',
@@ -105,16 +220,101 @@ export const seedDatabase = async () => {
         'Yoga Pavilion',
         'Free High-Speed Wi-Fi'
       ],
+      highlights: [
+        'Direct Private Access to Candolim White Sands',
+        'Secluded Oceanfront Plunge-Pool Villas',
+        'Sunset Mixology Lounge & Fresh Seafood Grill',
+        'Daily Sunrise Beach Yoga & Sound Healing',
+        'Speedboat & Catamaran Coastal Charters'
+      ],
+      dining: [
+        {
+          name: 'The Fisherman Wharf Ocean Grill',
+          cuisine: 'Coastal Goan & Fresh Seafood Catch',
+          hours: '12:00 - 23:00',
+          dressCode: 'Resort Casual',
+          description: 'Live daily catch grilled over coconut charcoal with authentic Portuguese-Goan peri-peri marinades.',
+          image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'
+        },
+        {
+          name: 'Azure Cove Sunset Cabana Bar',
+          cuisine: 'Tapas, Tropical Cocktails & Mezze',
+          hours: '16:00 - 00:30',
+          dressCode: 'Resort Casual',
+          description: 'Handcrafted botanic cocktails and sunset chillout acoustic sessions right by the gentle surf.',
+          image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'
+        }
+      ],
+      wellness: {
+        title: 'Breeze Oceanfront Wellness Pavilion',
+        description: 'Open-air Ayurvedic wellness shalas set amidst whispering palms and ocean breezes.',
+        hours: '07:00 - 20:00',
+        facilities: [
+          'Beachside Open-Air Massage Shalas',
+          'Freshwater Infinity Lagoon Pool',
+          'Aromatherapy Steam Sanctuary',
+          'Morning Vinyasa Yoga Deck'
+        ]
+      },
+      policies: {
+        checkInTime: '15:00',
+        checkOutTime: '12:00',
+        cancellationPolicy: 'Free cancellation up to 72 hours before arrival.',
+        petPolicy: 'Pet-friendly resort with specialized pet beds and beach run areas in select garden villas.',
+        smokingPolicy: 'Non-smoking indoor villas. Smoking permitted on private outdoor sun decks.',
+        childPolicy: 'Kids under 8 stay free with family. Kids beach club and splash zone included.',
+        depositPolicy: 'One-night authorization deposit at check-in.'
+      },
+      nearbyAttractions: [
+        {
+          name: 'Aguada Fort & Lighthouse',
+          distance: '3.2 km (7 min drive)',
+          category: 'Historic Fortress',
+          description: '17th-century Portuguese fort offering sweeping panoramic views of Sinquerim beach.'
+        },
+        {
+          name: 'Candolim Beach Water Sports',
+          distance: '0.2 km (2 min walk)',
+          category: 'Adventure & Leisure',
+          description: 'Parasailing, jet skis, and dolphin watching boat trips.'
+        },
+        {
+          name: 'Saturday Night Market Arpora',
+          distance: '6.5 km (15 min drive)',
+          category: 'Nightlife & Culture',
+          description: 'World-renowned bohemian night bazaar with live bands, fashion, and global cuisine.'
+        }
+      ],
+      propertyDetails: {
+        yearBuilt: 2018,
+        architecturalStyle: 'Contemporary Tropical & Coastal Portuguese',
+        totalFloors: 2,
+        totalRooms: 68,
+        airportDistance: '35 km from Goa International Airport (GOI / Manohar Mopa)'
+      },
+      faqs: [
+        {
+          question: 'Is direct beach access provided?',
+          answer: 'Yes, guests step directly from the villa lawns onto the private resort beach section with dedicated sun loungers and towel service.'
+        },
+        {
+          question: 'Are water sports arranged on-site?',
+          answer: 'Our on-site adventure concierge organizes sailing, windsurfing, scuba diving, and deep-sea game fishing.'
+        }
+      ],
       images: [
         'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
         'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1200&q=80'
       ],
-      status: HOTEL_STATUS.ACTIVE
+      status: HOTEL_STATUS.ACTIVE,
+      checkInTime: '15:00',
+      checkOutTime: '12:00'
     });
 
     const hotel3 = await Hotel.create({
       name: 'Udaivilas Lakefront Heritage Palace',
+      tagline: 'Regal Mewari Palace Estate Overlooking the Shimmering Waters of Lake Pichola',
       description:
         'A regal palace estate situated on the tranquil banks of Lake Pichola. Designed with traditional dome courtyards, hand-carved stone columns, and sweeping vistas of the Aravali hills.',
       address: 'Haridas Ji Ki Magri, Mulla Talai',
@@ -135,11 +335,96 @@ export const seedDatabase = async () => {
         'Cultural Rajasthani Performances',
         'Valet & Chauffeur Services'
       ],
+      highlights: [
+        'Arrival by Private Decorated Ceremonial Shikara Boat',
+        'Interconnecting Semi-Private Moat Pools for Premier Rooms',
+        'Breathtaking Views of the City Palace & Jagmandir Island',
+        'Traditional Mewari Royal Dinners under Domed Pavilions',
+        'Hand-Carved Marble Domes & Gold-Leaf Architectural Detailing'
+      ],
+      dining: [
+        {
+          name: 'Suryamahal Royal Pavilion',
+          cuisine: 'Authentic Rajasthani & Royal Mewari Thali',
+          hours: '12:30 - 15:00 & 19:30 - 23:00',
+          dressCode: 'Royal Formal',
+          description: 'Dine like royalty beneath a celestial painted dome serving heritage Rajput delicacies such as Laal Maas.',
+          image: 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=600&q=80'
+        },
+        {
+          name: 'Chandni Lake Terrace',
+          cuisine: 'Contemporary Indian & Fusion',
+          hours: '19:00 - 23:30',
+          dressCode: 'Smart Casual',
+          description: 'Open-air dining by candlelight with musical sitar performances and panoramic Lake Pichola views.',
+          image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80'
+        }
+      ],
+      wellness: {
+        title: 'The Mewar Ayurvedic Spa Sanctuary',
+        description: 'Imperial wellness therapies practiced with sacred oils and rose water treatments overlooking private reflecting lily ponds.',
+        hours: '07:00 - 21:00',
+        facilities: [
+          'Royal Couple Treatment Suites',
+          'Private Moat Lap Pools',
+          'Herbal Steam & Rose Quartz Saunas',
+          'Yoga in the Banyan Tree Courtyard'
+        ]
+      },
+      policies: {
+        checkInTime: '14:00',
+        checkOutTime: '12:00',
+        cancellationPolicy: 'Complimentary cancellation up to 7 days prior to arrival.',
+        petPolicy: 'Regretfully, pets cannot be accommodated due to preservation of heritage artworks.',
+        smokingPolicy: 'Non-smoking indoor suites. Designated courtyard areas available.',
+        childPolicy: 'Children of all ages welcome. Heritage storytelling and junior chef classes available.',
+        depositPolicy: 'Full guarantee required 7 days prior to check-in.'
+      },
+      nearbyAttractions: [
+        {
+          name: 'City Palace Complex',
+          distance: '1.8 km (10 min by royal boat)',
+          category: 'Royal Heritage',
+          description: 'Rajasthan largest palace complex with stunning mosaics and royal museum.'
+        },
+        {
+          name: 'Jagmandir Island Palace',
+          distance: '1.2 km (8 min boat ride)',
+          category: 'Historic Island',
+          description: 'Stunning 17th-century island palace built on Lake Pichola.'
+        },
+        {
+          name: 'Saheliyon-ki-Bari Gardens',
+          distance: '4.5 km (15 min drive)',
+          category: 'Botanical Heritage',
+          description: 'Historic royal gardens adorned with marble elephants and lotus pools.'
+        }
+      ],
+      propertyDetails: {
+        yearBuilt: 2002,
+        architecturalStyle: 'Traditional Rajasthani Mewar Palace',
+        totalFloors: 3,
+        totalRooms: 89,
+        airportDistance: '27 km from Maharana Pratap Airport (UDR)'
+      },
+      faqs: [
+        {
+          question: 'How do guests arrive at the palace?',
+          answer: 'Guests are greeted at our private lakeside jetty and escorted across Lake Pichola aboard handcrafted ceremonial Shikara boats.'
+        },
+        {
+          question: 'Can private candlelight dinners by the lake be reserved?',
+          answer: 'Yes, private dining pavilions on the lake promontory can be reserved for anniversaries and bespoke celebrations.'
+        }
+      ],
       images: [
         'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80'
+        'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80'
       ],
-      status: HOTEL_STATUS.ACTIVE
+      status: HOTEL_STATUS.ACTIVE,
+      checkInTime: '14:00',
+      checkOutTime: '12:00'
     });
 
     console.log('[Seed] Hotels created.');

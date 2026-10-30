@@ -65,3 +65,4 @@ serviceRequestSchema.index({ hotelId: 1, status: 1 });
 serviceRequestSchema.index({ guestId: 1, createdAt: -1 });
 
 export default mongoose.model('ServiceRequest', serviceRequestSchema);
+

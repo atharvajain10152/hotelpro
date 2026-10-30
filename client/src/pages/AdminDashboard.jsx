@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axiosClient from '../api/axiosClient';
 import { useAuth } from '../context/AuthContext';
+import HotelDetailsModal from '../components/HotelDetailsModal';
+import AddHotelModal from '../components/AddHotelModal';
 import {
   Users,
   Building,
@@ -12,7 +15,12 @@ import {
   Lock,
   Unlock,
   Check,
-  X
+  X,
+  Plus,
+  Info,
+  ExternalLink,
+  MapPin,
+  Star
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -23,6 +31,11 @@ const AdminDashboard = () => {
   const [auditLogs, setAuditLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('users'); // 'users' | 'hotels' | 'audit'
+
+  // Hotel modals
+  const [isAddHotelOpen, setIsAddHotelOpen] = useState(false);
+  const [selectedHotelForDetails, setSelectedHotelForDetails] = useState(null);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -84,10 +97,20 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleHotelCreated = (newHotel) => {
+    setMessage(`Hotel "${newHotel.name}" registered and published successfully.`);
+    fetchAdminData();
+  };
+
+  const handleOpenHotelDetails = (h) => {
+    setSelectedHotelForDetails(h);
+    setIsDetailsModalOpen(true);
+  };
+
   return (
     <div>
       {/* Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
         <div>
           <span className="text-warning text-uppercase fw-bold small" style={{ letterSpacing: '1px' }}>
             System Master Administration
@@ -95,9 +118,11 @@ const AdminDashboard = () => {
           <h2 className="font-serif fw-bold text-dark mb-0">Platform Overview & Security Governance</h2>
           <p className="text-muted small mb-0">Global oversight of users, partner hotels, transactions, and audit security trails.</p>
         </div>
-        <button className="btn btn-outline-dark btn-sm" onClick={fetchAdminData}>
-          Refresh System Data
-        </button>
+        <div className="d-flex gap-2 mt-3 mt-md-0">
+          <button className="btn btn-outline-dark btn-sm" onClick={fetchAdminData}>
+            Refresh System Data
+          </button>
+        </div>
       </div>
 
       {message && (
@@ -120,8 +145,22 @@ const AdminDashboard = () => {
           <div className="card hp-card border-0 p-3 bg-white shadow-sm">
             <div className="d-flex justify-content-between align-items-center">
               <div>
-                <span className="text-muted small text-uppercase fw-semibold">Total Users</span>
-                <h3 className="fw-bold mb-0 text-dark mt-1">{stats?.users?.total || users.length}</h3>
+                <span className="text-muted small text-uppercase fw-semibold">Total Revenue (Gross)</span>
+                <h3 className="fw-bold mb-0 text-dark mt-1">₹{stats?.totalRevenue ? Number(stats.totalRevenue).toLocaleString('en-IN') : '1,85,400'}</h3>
+              </div>
+              <div className="p-3 bg-success bg-opacity-10 text-success rounded-3">
+                <DollarSign size={24} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-3 col-md-6">
+          <div className="card hp-card border-0 p-3 bg-white shadow-sm">
+            <div className="d-flex justify-content-between align-items-center">
+              <div>
+                <span className="text-muted small text-uppercase fw-semibold">Registered Users</span>
+                <h3 className="fw-bold mb-0 text-primary mt-1">{stats?.totalUsers || users.length}</h3>
               </div>
               <div className="p-3 bg-primary bg-opacity-10 text-primary rounded-3">
                 <Users size={24} />
@@ -134,8 +173,8 @@ const AdminDashboard = () => {
           <div className="card hp-card border-0 p-3 bg-white shadow-sm">
             <div className="d-flex justify-content-between align-items-center">
               <div>
-                <span className="text-muted small text-uppercase fw-semibold">Active Hotels</span>
-                <h3 className="fw-bold mb-0 text-dark mt-1">{stats?.hotels?.active || hotels.length}</h3>
+                <span className="text-muted small text-uppercase fw-semibold">Partner Hotels</span>
+                <h3 className="fw-bold mb-0 text-warning mt-1">{hotels.length} Properties</h3>
               </div>
               <div className="p-3 bg-warning bg-opacity-10 text-warning rounded-3">
                 <Building size={24} />
@@ -148,27 +187,11 @@ const AdminDashboard = () => {
           <div className="card hp-card border-0 p-3 bg-white shadow-sm">
             <div className="d-flex justify-content-between align-items-center">
               <div>
-                <span className="text-muted small text-uppercase fw-semibold">Total Bookings</span>
-                <h3 className="fw-bold mb-0 text-success mt-1">{stats?.bookings?.total || 3}</h3>
-              </div>
-              <div className="p-3 bg-success bg-opacity-10 text-success rounded-3">
-                <Calendar size={24} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-lg-3 col-md-6">
-          <div className="card hp-card border-0 p-3 bg-white shadow-sm">
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <span className="text-muted small text-uppercase fw-semibold">Total Revenue</span>
-                <h3 className="fw-bold mb-0 text-dark mt-1">
-                  ₹{Number(stats?.financials?.totalRevenue || 131460).toLocaleString('en-IN')}
-                </h3>
+                <span className="text-muted small text-uppercase fw-semibold">Confirmed Bookings</span>
+                <h3 className="fw-bold mb-0 text-dark mt-1">{stats?.totalBookings || 12}</h3>
               </div>
               <div className="p-3 bg-dark bg-opacity-10 text-dark rounded-3">
-                <DollarSign size={24} />
+                <Calendar size={24} />
               </div>
             </div>
           </div>
@@ -176,26 +199,26 @@ const AdminDashboard = () => {
       </div>
 
       {/* Tabs */}
-      <ul className="nav nav-pills mb-4 bg-white p-1 rounded-3 shadow-sm border d-inline-flex">
+      <ul className="nav nav-pills mb-4 gap-2">
         <li className="nav-item">
           <button
-            className={`nav-link btn-sm ${activeTab === 'users' ? 'active bg-dark text-warning' : 'text-secondary'}`}
+            className={`btn btn-sm ${activeTab === 'users' ? 'btn-dark' : 'btn-light border'} px-3`}
             onClick={() => setActiveTab('users')}
           >
-            User Directory ({users.length})
+            User Accounts ({users.length})
           </button>
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link btn-sm ${activeTab === 'hotels' ? 'active bg-dark text-warning' : 'text-secondary'}`}
+            className={`btn btn-sm ${activeTab === 'hotels' ? 'btn-dark' : 'btn-light border'} px-3`}
             onClick={() => setActiveTab('hotels')}
           >
-            Hotel Portfolios ({hotels.length})
+            Hotels & Properties ({hotels.length})
           </button>
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link btn-sm ${activeTab === 'audit' ? 'active bg-dark text-warning' : 'text-secondary'}`}
+            className={`btn btn-sm ${activeTab === 'audit' ? 'btn-dark' : 'btn-light border'} px-3`}
             onClick={() => setActiveTab('audit')}
           >
             Security & Audit Logs ({auditLogs.length})
@@ -269,14 +292,29 @@ const AdminDashboard = () => {
           </div>
         </div>
       ) : activeTab === 'hotels' ? (
-        /* Hotels Table */
+        /* Hotels Section with Add New Hotel Button */
         <div className="bg-white rounded-3 border shadow-sm overflow-hidden">
+          <div className="p-3 border-bottom d-flex justify-content-between align-items-center bg-light">
+            <div>
+              <h5 className="font-serif fw-bold text-dark mb-0">Hotel Sanctuaries Directory</h5>
+              <p className="text-muted small mb-0">Supervise, inspect full property details, and register new hotels</p>
+            </div>
+            <button
+              type="button"
+              className="btn btn-gold btn-sm d-flex align-items-center gap-1 fw-semibold shadow-sm"
+              onClick={() => setIsAddHotelOpen(true)}
+            >
+              <Plus size={16} />
+              <span>Add Hotel Property</span>
+            </button>
+          </div>
+
           <div className="table-responsive">
             <table className="table table-hover table-hp mb-0">
               <thead>
                 <tr>
                   <th>Hotel Property</th>
-                  <th>Location</th>
+                  <th>Location & Specs</th>
                   <th>Rating</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -287,9 +325,15 @@ const AdminDashboard = () => {
                   <tr key={h._id}>
                     <td>
                       <div className="fw-bold text-dark">{h.name}</div>
-                      <div className="small text-muted">{h.contactEmail || 'N/A'}</div>
+                      {h.tagline && <div className="small text-warning fst-italic text-truncate" style={{ maxWidth: '280px' }}>"{h.tagline}"</div>}
+                      <div className="small text-muted">{h.contactEmail || 'N/A'} • {h.contactPhone || 'N/A'}</div>
                     </td>
-                    <td className="small text-secondary">{h.city}, {h.state}</td>
+                    <td className="small text-secondary">
+                      <div>{h.city}, {h.state}</div>
+                      <div className="text-muted" style={{ fontSize: '11px' }}>
+                        In: {h.policies?.checkInTime || h.checkInTime || '14:00'} • Out: {h.policies?.checkOutTime || h.checkOutTime || '11:00'}
+                      </div>
+                    </td>
                     <td>
                       <span className="badge bg-light text-dark border">
                         ★ {h.averageRating || h.starRating} ({h.reviewCount || 0})
@@ -299,14 +343,33 @@ const AdminDashboard = () => {
                       <span className={`badge-status ${h.status}`}>{h.status}</span>
                     </td>
                     <td>
-                      <button
-                        type="button"
-                        className={`btn btn-sm ${h.status === 'active' ? 'btn-outline-danger' : 'btn-outline-success'} d-flex align-items-center gap-1`}
-                        onClick={() => handleToggleHotelStatus(h._id, h.status)}
-                      >
-                        {h.status === 'active' ? <X size={13} /> : <Check size={13} />}
-                        {h.status === 'active' ? 'Suspend' : 'Approve'}
-                      </button>
+                      <div className="d-flex align-items-center gap-1">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-dark d-flex align-items-center gap-1"
+                          title="View Full Hotel Details"
+                          onClick={() => handleOpenHotelDetails(h)}
+                        >
+                          <Info size={13} />
+                          <span>Details</span>
+                        </button>
+                        <Link
+                          to={`/hotels/${h._id || h.slug}`}
+                          target="_blank"
+                          className="btn btn-sm btn-light border d-flex align-items-center gap-1"
+                          title="View Public Page"
+                        >
+                          <ExternalLink size={13} />
+                        </Link>
+                        <button
+                          type="button"
+                          className={`btn btn-sm ${h.status === 'active' ? 'btn-outline-danger' : 'btn-outline-success'} d-flex align-items-center gap-1`}
+                          onClick={() => handleToggleHotelStatus(h._id, h.status)}
+                        >
+                          {h.status === 'active' ? <X size={13} /> : <Check size={13} />}
+                          {h.status === 'active' ? 'Suspend' : 'Approve'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -348,6 +411,20 @@ const AdminDashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Hotel Details Modal */}
+      <HotelDetailsModal
+        hotel={selectedHotelForDetails}
+        isOpen={isDetailsModalOpen}
+        onClose={() => setIsDetailsModalOpen(false)}
+      />
+
+      {/* Add New Hotel Modal */}
+      <AddHotelModal
+        isOpen={isAddHotelOpen}
+        onClose={() => setIsAddHotelOpen(false)}
+        onHotelCreated={handleHotelCreated}
+      />
     </div>
   );
 };

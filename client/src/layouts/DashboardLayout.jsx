@@ -68,6 +68,10 @@ const DashboardLayout = () => {
             <BedDouble size={18} />
             <span>Room Inventory & Rates</span>
           </NavLink>
+          <NavLink to="/dashboard/manager/details" className={({ isActive }) => `hp-sidebar-link ${isActive ? 'active' : ''}`}>
+            <Building size={18} />
+            <span>Hotel Details & Profile</span>
+          </NavLink>
           <NavLink to="/dashboard/staff" className={({ isActive }) => `hp-sidebar-link ${isActive ? 'active' : ''}`}>
             <CheckSquare size={18} />
             <span>Daily Front Desk Ops</span>
@@ -202,3 +206,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+

@@ -280,3 +280,4 @@ const BookingModal = ({ hotel, category, isOpen, onClose, onHoldSuccess }) => {
 };
 
 export default BookingModal;
+

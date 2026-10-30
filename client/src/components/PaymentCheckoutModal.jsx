@@ -188,3 +188,4 @@ const PaymentCheckoutModal = ({ booking, isOpen, onClose, onPaymentSuccess }) =>
 };
 
 export default PaymentCheckoutModal;
+

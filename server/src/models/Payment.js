@@ -75,3 +75,4 @@ const paymentSchema = new mongoose.Schema(
 paymentSchema.index({ guestId: 1, createdAt: -1 });
 
 export default mongoose.model('Payment', paymentSchema);
+

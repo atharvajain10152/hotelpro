@@ -75,3 +75,4 @@ export const SERVICE_REQUEST_TYPES = [
 
 export const TAX_RATE_PERCENT = 18; // 18% standard GST / Hospitality Tax
 export const HOLD_EXPIRATION_MINUTES = 15; // 15-minute temporary hold
+

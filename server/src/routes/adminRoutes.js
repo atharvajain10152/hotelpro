@@ -20,3 +20,4 @@ router.patch('/hotels/:id/approval', updateHotelApproval);
 router.get('/audit-logs', getAuditLogs);
 
 export default router;
+

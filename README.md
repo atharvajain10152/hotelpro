@@ -158,3 +158,4 @@ hotelpro/
 
 ## 7. License
 ISC License. Built for HotelPro Hospitality Platforms.
+

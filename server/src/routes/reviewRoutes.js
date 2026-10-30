@@ -8,3 +8,4 @@ router.get('/hotel/:hotelId', getHotelReviews);
 router.post('/', protect, createReview);
 
 export default router;
+

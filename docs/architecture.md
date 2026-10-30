@@ -78,3 +78,4 @@ Pricing calculations are performed exclusively on the backend:
 - Check-out automatically sets room operational status to `dirty` and generates high-priority housekeeping tasks.
 - Housekeeping staff mark tasks `in_progress` (room `cleaning`) and `completed` (room `clean`).
 - Clean rooms are automatically prioritized for new guest check-ins.
+

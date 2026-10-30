@@ -114,23 +114,15 @@ export const getHotelById = async (req, res, next) => {
 
 export const createHotel = async (req, res, next) => {
   try {
-    const { name, description, address, city, state, country, amenities, images, starRating } =
-      req.body;
-
     const managerId = req.user.role === ROLES.MANAGER ? req.user._id : req.body.managerId;
 
-    const hotel = await Hotel.create({
-      name,
-      description,
-      address,
-      city,
-      state,
-      country: country || 'India',
-      amenities,
-      images,
-      starRating,
+    const hotelData = {
+      ...req.body,
+      country: req.body.country || 'India',
       managerId
-    });
+    };
+
+    const hotel = await Hotel.create(hotelData);
 
     res.status(201).json({
       success: true,
@@ -169,3 +161,4 @@ export const updateHotel = async (req, res, next) => {
     next(err);
   }
 };
+

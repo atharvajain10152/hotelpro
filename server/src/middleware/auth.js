@@ -104,3 +104,4 @@ export const requireHotelScope = (req, res, next) => {
 
   next();
 };
+

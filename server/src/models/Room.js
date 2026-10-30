@@ -49,3 +49,4 @@ roomSchema.index({ hotelId: 1, roomNumber: 1 }, { unique: true });
 roomSchema.index({ hotelId: 1, operationalStatus: 1 });
 
 export default mongoose.model('Room', roomSchema);
+

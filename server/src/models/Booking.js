@@ -125,3 +125,4 @@ bookingSchema.index({ roomId: 1, status: 1, checkInDate: 1, checkOutDate: 1 });
 bookingSchema.index({ guestId: 1, createdAt: -1 });
 
 export default mongoose.model('Booking', bookingSchema);
+

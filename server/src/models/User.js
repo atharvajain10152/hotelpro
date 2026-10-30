@@ -98,3 +98,4 @@ userSchema.methods.generateAuthToken = function () {
 };
 
 export default mongoose.model('User', userSchema);
+

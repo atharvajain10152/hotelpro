@@ -105,6 +105,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="manager/details"
+              element={
+                <ProtectedRoute allowedRoles={['manager', 'admin']}>
+                  <ManagerDashboard initialTab="hotel-details" />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Platform Administrator Portal */}
             <Route
@@ -151,3 +159,4 @@ function App() {
 }
 
 export default App;
+

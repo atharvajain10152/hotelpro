@@ -27,3 +27,4 @@ describe('Pricing Calculation Smoke Tests', () => {
     expect(total).toBe(21240);
   });
 });
+

@@ -13,3 +13,4 @@ router.post('/verify', protect, verifyPayment);
 router.get('/my', protect, getMyPayments);
 
 export default router;
+

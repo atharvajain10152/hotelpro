@@ -53,3 +53,4 @@ const housekeepingTaskSchema = new mongoose.Schema(
 housekeepingTaskSchema.index({ hotelId: 1, status: 1 });
 
 export default mongoose.model('HousekeepingTask', housekeepingTaskSchema);
+

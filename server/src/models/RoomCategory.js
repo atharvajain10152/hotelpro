@@ -87,3 +87,4 @@ const roomCategorySchema = new mongoose.Schema(
 roomCategorySchema.index({ hotelId: 1, basePrice: 1 });
 
 export default mongoose.model('RoomCategory', roomCategorySchema);
+

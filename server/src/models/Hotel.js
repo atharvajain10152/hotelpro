@@ -112,7 +112,74 @@ const hotelSchema = new mongoose.Schema(
     cancellationPolicy: {
       type: String,
       default: 'Free cancellation up to 48 hours prior to check-in. Non-refundable thereafter.'
-    }
+    },
+    tagline: {
+      type: String,
+      trim: true,
+      default: 'An Iconic Luxury Sanctuary Offering Timeless Elegance & Impeccable Hospitality'
+    },
+    highlights: {
+      type: [String],
+      default: [
+        'Bayview Infinity Pool & Private Cabanas',
+        '24/7 Dedicated Butler Service',
+        'Michelin-Curated Fine Dining & High Tea',
+        'Heritage Ayurvedic Spa & Thermal Suites',
+        'Private Luxury Airport Limousine Transfers'
+      ]
+    },
+    dining: [
+      {
+        name: { type: String, required: true },
+        cuisine: { type: String, default: 'Multi-Cuisine Fine Dining' },
+        hours: { type: String, default: '07:00 - 23:30' },
+        dressCode: { type: String, default: 'Smart Casual' },
+        description: { type: String, default: '' },
+        image: { type: String, default: '' }
+      }
+    ],
+    wellness: {
+      title: { type: String, default: 'Signature Wellness & Spa Retreat' },
+      description: {
+        type: String,
+        default: 'Rejuvenate your senses with bespoke holistic therapies, ancient wellness traditions, and modern restorative treatments.'
+      },
+      hours: { type: String, default: '06:00 - 22:00' },
+      facilities: {
+        type: [String],
+        default: ['Ayurvedic Treatment Suites', 'Heated Hydrotherapy Pool', 'Steam & Sauna Lounges', 'Technogym Fitness Studio', 'Outdoor Yoga Deck']
+      }
+    },
+    policies: {
+      checkInTime: { type: String, default: '14:00' },
+      checkOutTime: { type: String, default: '11:00' },
+      cancellationPolicy: { type: String, default: 'Free cancellation up to 48 hours prior to arrival.' },
+      petPolicy: { type: String, default: 'Pets welcome upon prior request in selected villas and ground-floor suites.' },
+      smokingPolicy: { type: String, default: '100% Smoke-Free indoor sanctuary. Designated outdoor smoking lounges available.' },
+      childPolicy: { type: String, default: 'Children under 6 years stay complimentary when sharing existing suite bedding.' },
+      depositPolicy: { type: String, default: 'A valid government photo ID and credit card guarantee are required at check-in.' }
+    },
+    nearbyAttractions: [
+      {
+        name: { type: String, required: true },
+        distance: { type: String, required: true },
+        category: { type: String, default: 'Attraction' },
+        description: { type: String, default: '' }
+      }
+    ],
+    propertyDetails: {
+      yearBuilt: { type: Number, default: 1903 },
+      architecturalStyle: { type: String, default: 'Heritage Palace & Classical Grandeur' },
+      totalFloors: { type: Number, default: 7 },
+      totalRooms: { type: Number, default: 150 },
+      airportDistance: { type: String, default: '24 km from International Airport' }
+    },
+    faqs: [
+      {
+        question: { type: String, required: true },
+        answer: { type: String, required: true }
+      }
+    ]
   },
   {
     timestamps: true
@@ -131,3 +198,4 @@ hotelSchema.pre('save', function (next) {
 });
 
 export default mongoose.model('Hotel', hotelSchema);
+

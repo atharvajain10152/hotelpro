@@ -72,6 +72,14 @@ The database uses MongoDB with Mongoose schemas designed for ACID compliance, re
 - `checkInTime`: String (default: '14:00')
 - `checkOutTime`: String (default: '11:00')
 - `cancellationPolicy`: String
+- `tagline`: String (curated luxury subtitle/motto)
+- `highlights`: [String] (signature property experiences, e.g., butler service, bay views)
+- `dining`: `[{ name, cuisine, hours, dressCode, description, image }]` (on-site culinary & bar venues)
+- `wellness`: `{ title, description, hours, facilities: [String] }` (spa & fitness sanctuary)
+- `policies`: `{ checkInTime, checkOutTime, cancellationPolicy, petPolicy, smokingPolicy, childPolicy, depositPolicy }` (stay house rules)
+- `nearbyAttractions`: `[{ name, distance, category, description }]` (neighborhood landmark guide)
+- `propertyDetails`: `{ yearBuilt, architecturalStyle, totalFloors, totalRooms, airportDistance }` (architectural specifications)
+- `faqs`: `[{ question, answer }]` (guest frequently asked questions)
 - `createdAt`, `updatedAt`: Timestamps
 
 ### 2.3 RoomCategory (`room_categories`)
@@ -195,3 +203,4 @@ The database uses MongoDB with Mongoose schemas designed for ACID compliance, re
 - `details`: Object / Mixed
 - `ipAddress`: String
 - `createdAt`: Date (indexed)
+

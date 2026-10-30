@@ -1,11 +1,20 @@
 import app from './app.js';
 import { connectDB } from './config/db.js';
+import { seedDatabase } from './utils/seed.js'; // <-- Import the seeder
 
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
     await connectDB();
+
+    // Automatically seed database on startup
+    try {
+      await seedDatabase();
+      console.log('[Server] Database successfully auto-seeded on startup!');
+    } catch (seedErr) {
+      console.warn('[Server] Auto-seed note:', seedErr.message);
+    }
 
     const server = app.listen(PORT, () => {
       console.log(`\n======================================================`);
@@ -17,7 +26,6 @@ const startServer = async () => {
 
     process.on('unhandledRejection', (err) => {
       console.error(`[Server Unhandled Rejection]: ${err.message}`);
-      // Keep running in development
     });
 
     process.on('SIGTERM', () => {

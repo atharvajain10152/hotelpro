@@ -207,3 +207,64 @@ test('9. Operations - Daily Overview & Housekeeping', async () => {
   assert.equal(resTasks.status, 200);
   assert.ok(resTasks.body.tasks.length >= 1);
 });
+
+test('10. Hotel Details Management - Create & Update Rich Details', async () => {
+  // Admin creates new hotel with full details
+  const resCreate = await request(app)
+    .post('/api/v1/hotels')
+    .set('Authorization', `Bearer ${adminToken}`)
+    .send({
+      name: 'The Oberoi Heritage Villa & Spa',
+      tagline: 'Timeless Luxury Overlooking the Aravallis',
+      description: 'An architectural jewel featuring marble courtyards and world-class spas.',
+      address: '22 Lake Palace Road',
+      city: 'Udaipur',
+      state: 'Rajasthan',
+      country: 'India',
+      postalCode: '313002',
+      starRating: 5,
+      contactEmail: 'concierge@oberoiheritage.com',
+      contactPhone: '+91 294 255 1122',
+      checkInTime: '14:00',
+      checkOutTime: '11:00',
+      cancellationPolicy: 'Free cancellation up to 48 hours prior to check-in.',
+      amenities: ['Private Plunge Pool', 'Ayurvedic Spa', '24/7 Butler Service'],
+      highlights: ['Lakefront Boat Arrival', 'Royal Mewari Dinners'],
+      propertyDetails: {
+        yearBuilt: 2021,
+        architecturalStyle: 'Traditional Rajasthani',
+        totalRooms: 45,
+        airportDistance: '22 km from Maharana Pratap Airport'
+      }
+    });
+
+  assert.equal(resCreate.status, 201);
+  assert.equal(resCreate.body.success, true);
+  assert.equal(resCreate.body.hotel.name, 'The Oberoi Heritage Villa & Spa');
+  assert.equal(resCreate.body.hotel.tagline, 'Timeless Luxury Overlooking the Aravallis');
+  assert.equal(resCreate.body.hotel.propertyDetails.totalRooms, 45);
+
+  const createdId = resCreate.body.hotel._id;
+
+  // Manager updates existing hotel details
+  const resUpdate = await request(app)
+    .put(`/api/v1/hotels/${hotelId}`)
+    .set('Authorization', `Bearer ${managerToken}`)
+    .send({
+      tagline: 'Updated Signature Waterfront Luxury Experience',
+      contactPhone: '+91 22 9999 8888'
+    });
+
+  assert.equal(resUpdate.status, 200);
+  assert.equal(resUpdate.body.success, true);
+  assert.equal(resUpdate.body.hotel.tagline, 'Updated Signature Waterfront Luxury Experience');
+  assert.equal(resUpdate.body.hotel.contactPhone, '+91 22 9999 8888');
+
+  // Verify via public GET
+  const resGet = await request(app).get(`/api/v1/hotels/${createdId}`);
+  assert.equal(resGet.status, 200);
+  assert.equal(resGet.body.hotel.city, 'Udaipur');
+  assert.ok(resGet.body.hotel.highlights.includes('Lakefront Boat Arrival'));
+});
+
+

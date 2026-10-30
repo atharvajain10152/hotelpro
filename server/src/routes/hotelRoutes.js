@@ -16,3 +16,4 @@ router.post('/', protect, authorize(ROLES.ADMIN, ROLES.MANAGER), createHotel);
 router.put('/:id', protect, authorize(ROLES.ADMIN, ROLES.MANAGER), updateHotel);
 
 export default router;
+
